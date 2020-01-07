@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.5/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/style.css">
    
     <title>Document</title>
@@ -99,69 +100,114 @@
         <div class="table">
             <h2>Table 1</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas ex est debitis, molestiae vitae quaerat possimus quis maiores optio odit, aperiam nemo hic perspiciatis culpa nisi praesentium libero quam accusantium!</p>
-        <table class="table table-striped table-responsive" id="myTable">
-            <thead>
-              <tr>
-                <th scope="col col-md-2">#</th>
-                <th scope="col col-md-2">First</th>
-                <th scope="col col-md-2">Last</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-                <th scope="col col-md-2">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td><button type="button" class="btn btn-success">Изменить</button></td>
-                <td><button type="button" class="btn btn-danger">Удалить</button></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td><button type="button" class="btn btn-success">Изменить</button></td>
-                <td><button type="button" class="btn btn-danger">Удалить</button></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@twitter</td>
-                <td><button type="button" class="btn btn-success">Изменить</button></td>
-                <td><button type="button" class="btn btn-danger">Удалить</button></td>
-                
-              </tr>
-            </tbody>
+        <div class="container mt-2 mb-2">
+          <div id="toolbar">
+              <button id="add" class="btn btn-light" data-toggle="modal" data-target="#myModal">Добавить</button>
+              <button id="edit" class="btn btn-light">Изменить</button>
+              <button id="remove" class="btn btn-light">Удалить</button>
+          </div>
+
+          <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Добавить пациента</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form action="/action_page.php">
+                  <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" class="form-control" placeholder="Enter surname" id="surname">
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" placeholder="Enter address" id="address">
+                  </div>
+                  <div class="form-group">
+                    <label for="surname">Возраст:</label>
+                    <input type="text" class="form-control" placeholder="Enter surname" id="surname">
+                  </div>
+                  <button type="submit" class="btn btn-primary" data-dismiss="modal">Добавить</button>
+                </form>
+              </div>
+              
+             
+              
+            </div>
+          </div>
+        </div>
+  
+
+          <table
+          id="table"
+          data-toggle="table"
+          data-pagination="true"
+          data-search="true"
+          
+          data-toolbar="toolbar"
+          data-advanced-search="true"
+          data-id-table="advancedTable"
+          data-filter-control="true"
+          data-filter-show-clear="true">
+          <thead>
+                  <tr>
+                      <th data-field = "state" data-checkbox="true"></th>
+                      <th data-field = "id" data-sortable="true">ID</th>
+                      <th data-field = "name" data-sortable="true" data-filter-control="input">Name</th>
+                      <th data-field = "position" data-sortable="true" data-filter-control="input">Name</th>
+                      <th data-field = "salary" data-sortable="true" data-filter-control="input">Name</th>
+                      <th data-field = "start_date" data-sortable="true" data-filter-control="input">Name</th>
+                      <th data-field = "office" data-sortable="true" data-filter-control="input">Name</th>
+                      <th data-field = "age" data-sortable="true" data-filter-control="input">Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                    
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    
+                  </tr>
+                </tbody>
           </table>
+      </div>
         </div>
         
     </section>
@@ -184,10 +230,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready( function () {
-      $('#myTable').DataTable();} );
-      </script>
+    <script src="dist/bootstrap-table.min.js"></script>
+    <script src="dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script src="dist/extensions/toolbar/bootstrap-table-toolbar.min.js"></script>
+
 </body>
 </html>
